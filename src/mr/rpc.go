@@ -14,16 +14,41 @@ import "strconv"
 // and reply for an RPC.
 //
 
-type ExampleArgs struct {
-	X int
+//type ExampleArgs struct {
+//	X int
+//}
+//
+//type ExampleReply struct {
+//	Y int
+//}
+type GetReduceCountArgs struct {
 }
 
-type ExampleReply struct {
-	Y int
+type GetReduceCountReply struct {
+	ReduceCount int
+}
+
+type RequestTaskArgs struct {
+	WorkerId int
+}
+
+type RequestTaskReply struct {
+	TaskType TaskType
+	TaskId   int
+	TaskFile string
+}
+
+type ReportTaskArgs struct {
+	WorkerId int
+	TaskType TaskType
+	TaskId   int
+}
+
+type ReportTaskReply struct {
+	CanExit bool
 }
 
 // Add your RPC definitions here.
-
 
 // Cook up a unique-ish UNIX-domain socket name
 // in /var/tmp, for the master.
@@ -34,3 +59,4 @@ func masterSock() string {
 	s += strconv.Itoa(os.Getuid())
 	return s
 }
+
